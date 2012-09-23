@@ -248,13 +248,10 @@ middleware_list = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'comrade.core.middleware.HttpMethodsMiddleware',
 ]
 
 if is_solo():
     middleware_list += [
-        'comrade.core.middleware.ArgumentLogMiddleware',
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
     ]
 else:
     middleware_list += [

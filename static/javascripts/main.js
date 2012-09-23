@@ -2,6 +2,7 @@
  * @fileOverview This file contains the core JavaScript functionalMAINy of the sMAINe.
  *
  * @author <a href="mailto:hi@alexmic.net"> Alex Michael </a>
+ * @edited_by Alex & George for django
  */
 
 /**
@@ -12,9 +13,10 @@
 var MAIN = MAIN || {};
 
 /**
- * The XSRF token.
+ *  Django
+ *  The CSRF token 
  */
-MAIN.xsrf = null;
+MAIN.csrf = null;
 
 /**
  * Callback to be called when the page has finished loading.
@@ -150,6 +152,7 @@ MAIN.get = function(url, data, showLoader, success, showErrNotifier, error)
  * @param {Boolean} showLoader A flag indicating whether to show the loader or not.
  * @param {Boolean} showErrNotifier A flag indicating whether to show an error popup or not.
  */
+
 MAIN.ajax = function(url, data, success, error, method, showLoader, showErrNotifier)
 {
     var requestCompleted = false;
@@ -164,7 +167,11 @@ MAIN.ajax = function(url, data, success, error, method, showLoader, showErrNotif
             }, 200);
         }
     }
-    data["_xsrf"] = MAIN.xsrf;
+    
+    // Set csrf token
+    MAIN.csrf = MAIN.getCookie('csrftoken'); 
+    data['csrfmiddlewaretoken'] = MAIN.csrf;
+
     $.ajax({
         url: url,
         data: data,
@@ -174,6 +181,7 @@ MAIN.ajax = function(url, data, success, error, method, showLoader, showErrNotif
             if (loader) {
                 loader.hide();
             }
+            // VALLE KANA COMMENT REEEEE - NEEDS TO BE IN RESPONSE
             if (response.s) {
                 success(response);
             } else {
@@ -220,10 +228,37 @@ MAIN.addModule = function(name, module)
     } else {
         throw "Module " + name + " already exists under the MAIN namespace.";
     }
-}
+};
 
-
-
+/**
+ * Gets cookie to extract info
+ * 
+ * Usage:
+ * Get csrf for no-form ajax requests
+ *
+ * Example:
+ * MAIN.getCookie('csrftoken') -> gets csrftoken 
+ * 
+ * 
+ * @param {String} of what you wanna extract
+ * 
+ */
+ MAIN.getCookie = function(name) 
+ {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
 
 //============================ MAIN Global Function ================================ //
 
@@ -501,9 +536,6 @@ MAIN.api = new MAINAPI();
 
 // ================================================== //
 
-// Save a reference to the xsrf token.
-MAIN.xsrf = $("input[name='_xsrf']").val();
-
 // Check if a fragment exists in the URL and highlight anything
 // wMAINh that fragment as id.
 MAIN.fn.highlightURLFragment();
@@ -525,6 +557,11 @@ if (typeof console === "undefined") {
         log: function () {}
     };
 }
+
+
+
+
+
 
 
 

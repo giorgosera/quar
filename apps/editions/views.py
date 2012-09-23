@@ -8,4 +8,5 @@ def index(request):
     return render_to_response('editions/index.html', {'all_editions': all_editions})
 
 def generate(request, edition_id):
-	return render_to_response('editions/generate.html', {'edition': edition_id})
+	edition = Edition.objects.get(id__exact=edition_id)
+	return render_to_response('editions/generate.html', {'edition': edition})

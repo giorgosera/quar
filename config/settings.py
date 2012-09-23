@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
@@ -130,7 +131,7 @@ INSTALLED_APPS = (
     'south',
     'django_extensions',
     'compressor',
-
+    'registration',
     # Project specific apps go here
     'editions',
 )
@@ -187,3 +188,12 @@ COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
 
 # django-grappelli
 GRAPPELLI_ADMIN_TITLE = "Quar Admin"
+
+#user-registration
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST='localhost'
+EMAIL_PORT=1025
+EMAIL_HOST_USER=""
+EMAIL_HOST_PASSWORD=""
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'

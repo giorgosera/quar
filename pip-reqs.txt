@@ -1,3 +1,8 @@
-Django==1.4.1
-argparse==1.2.1
-wsgiref==0.1.2
+path.py
+Django
+south
+fabric
+django-grappelli
+django-extensions
+
+git+git://github.com/jezdez/django_compressor.git

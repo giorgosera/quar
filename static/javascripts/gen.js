@@ -1,4 +1,5 @@
-/**
+/*
+ *
  * @fileOverview Javascript files for qrcode generator view
  * @watchIt: Just a rough draft - Needs massive restructuring
  *

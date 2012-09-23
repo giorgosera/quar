@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-	{% if all_editions %}
-	    <ul>
-	    {% for edition in all_editions %}
-	        <li><a href="/editions/{{ edition.id }}/generate/">{{ edition.title }}</a></li>
-	    {% endfor %}
-	    </ul>
-	{% else %}
-	    <p>No editions are available.</p>
-	{% endif %}
+	<div id="editions">
+		<h2> Editions </h2>
+		{% if all_editions %}
+		    <ul id="editionList">
+		    {% for edition in all_editions %}
+		        <li><a href="/editions/{{ edition.id }}/generate/">{{ edition.title }}</a></li>
+		    {% endfor %}
+		    </ul>
+		{% else %}
+		    <p>No editions are available.</p>
+		{% endif %}
+		<a href="javascript:void(0)" id="editionAdd"> Add </button>
+	</div>
 
-{% endblock content %}
+{% endblock content %} 
+
+{% block page_js%}
+	<script src="{{ STATIC_URL }}javascripts/edition.js"></script>
+{% endblock page_js %}

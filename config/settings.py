@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'compressor',
 
     # Project specific apps go here
-    # 'my_app',
+    'editions',
 )
 
 # A sample logging configuration. The only tangible logging

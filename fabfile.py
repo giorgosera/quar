@@ -16,5 +16,6 @@ def start():
     '''
     Starts the server.
     '''
+    local("python manage.py syncdb --migrate")
     local("python manage.py runserver")
     print(green("Server started!"))

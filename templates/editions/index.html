@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if all_editions %}
+	    <ul>
+	    {% for edition in all_editions %}
+	        <li><a href="/editions/{{ edition.id }}/generate/">{{ edition.title }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No editions are available.</p>
+	{% endif %}
+
+{% endblock content %}

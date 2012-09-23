@@ -223,7 +223,6 @@ MAIN.addModule = function(name, module)
 }
 
 
-};
 
 
 //============================ MAIN Global Function ================================ //

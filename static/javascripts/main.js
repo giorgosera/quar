@@ -34,7 +34,7 @@ MAIN.onPageLoad = function(fn)
 /**
  * Executes the registered callback (if any) for the current page. 
  * This is called after all the JS scripts have been loaded and
- * any necessary inMAINialization code has been executed.
+ * any necessary initialization code has been executed.
  */
 MAIN.pageLoad = function()
 {

@@ -1,5 +1,19 @@
 {% extends "base.html" %}
+{% load compress %}
+<!--  Content Block -->
 
 {% block content %}
-	<h1>{{ edition.id }}</h1>
+	<h1>{{ edition.title }}</h1>
+	<div class="generator">
+	</div>
 {% endblock content %}
+
+<!--  JS Block -->
+
+{% block generate_js %}
+	{% compress js %}
+		<script src="{{ STATIC_URL }}javascripts/libs/jquery.qrcode-0.2.min.js"></script>
+		<script src="{{ STATIC_URL }}javascripts/gen.js"></script>
+	{% endcompress %}
+{% endblock generate_js %}
+

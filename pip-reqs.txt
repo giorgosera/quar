@@ -1,5 +1,0 @@
-Django==1.4.1
-argparse==1.2.1
-commonware==0.4.0
-django-extensions==0.9
-wsgiref==0.1.2

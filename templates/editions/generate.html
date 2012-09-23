@@ -10,10 +10,8 @@
 
 <!--  JS Block -->
 
-{% block generate_js %}
-	{% compress js %}
+{% block page_js %}
 		<script src="{{ STATIC_URL }}javascripts/libs/jquery.qrcode-0.2.min.js"></script>
 		<script src="{{ STATIC_URL }}javascripts/gen.js"></script>
-	{% endcompress %}
-{% endblock generate_js %}
+{% endblock page_js %}
 

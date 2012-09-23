@@ -1,29 +1,20 @@
-#!/usr/bin/env python
-"""Fabfile using only commands from buedafab (https://github.com/bueda/ops) to
-deploy this app to remote servers.
-"""
+###################################
+# Fab file to deploy these app    #
+# to various servers.             #
+# Author: Giorgos Eracleous       #
+###################################
 
 import os
 from fabric.api import *
+from fabric.colors import green
 
-from buedafab.test import test, django_test_runner as _django_test_runner, lint
-from buedafab.deploy.types import django_deploy as deploy
-from buedafab.environments import (django_development as development,
-        django_production as production, django_localhost as localhost,
-        django_staging as staging)
-from buedafab.tasks import (setup, restart_webserver, rollback, enable,
-        disable, maintenancemode, rechef)
+####################
+# PROCESS COMMANDS #
+####################
 
-# For a description of these attributes, see https://github.com/bueda/ops
-
-env.unit = "boilerplate"
-env.path = "/var/webapps/%(unit)s" % env
-env.scm = "git@github.com:bueda/%(unit)s.git" % env
-env.scm_http_url = "http://github.com/bueda/%(unit)s" % env
-env.root_dir = os.path.abspath(os.path.dirname(__file__))
-env.test_runner = _django_test_runner
-
-env.pip_requirements = ["requirements/common.txt",
-        "vendor/allo/pip-requirements.txt",]
-env.pip_requirements_dev = ["requirements/dev.txt",]
-env.pip_requirements_production = ["requirements/production.txt",]
+def start():
+    '''
+    Starts the server.
+    '''
+    local("python manage.py runserver")
+    print(green("Server started!"))

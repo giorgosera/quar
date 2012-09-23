@@ -309,10 +309,7 @@ apps_list = [
 
 if is_solo():
     apps_list += [
-        'django_extensions',
-        'debug_toolbar',
-        'django_nose',
-        'django_coverage',
+        'django_extensions'
     ]
 
 INSTALLED_APPS = tuple(apps_list)
